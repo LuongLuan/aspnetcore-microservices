@@ -9,7 +9,7 @@ namespace Contracts.Domains
 {
     public class EntityAuditBase<T> : EntityBase<T>, IAuditable
     {
-        public DateTimeOffset CreatedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTimeOffset? LastModifiedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset? LastModifiedDate { get; set; }
     }
 }
