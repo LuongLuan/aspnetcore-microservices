@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Common.Interfaces
 {
-    public interface IRepositoryQueryBase<T, K, TContext> where T : EntityBase<K>
+    public interface IRepositoryQueryBaseAsync<T, K, TContext> where T : EntityBase<K>
     where TContext : DbContext
     {
         IQueryable<T> FindAll(bool trackChanges = false);
@@ -24,7 +24,7 @@ namespace Contracts.Common.Interfaces
         Task<T?> GetByIdAsync(K id, params Expression<Func<T, object>>[] includeProperties);
     }
 
-    public interface IRepositoryBaseAsync<T, K, TContext> : IRepositoryQueryBase<T, K, TContext>
+    public interface IRepositoryBaseAsync<T, K, TContext> : IRepositoryQueryBaseAsync<T, K, TContext>
     where T : EntityBase<K>
     where TContext : DbContext
     {
