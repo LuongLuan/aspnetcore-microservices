@@ -1,3 +1,5 @@
+using Basket.API.Extensions;
+using Common.Logging;
 using Serilog;
 
 namespace Basket.API
@@ -11,7 +13,13 @@ namespace Basket.API
 
             try
             {
+                builder.Host.UseSerilog(Serilogger.Configure);
+                builder.Host.AddAppConfigurations();
                 // Add services to the container.
+                builder.Services.ConfigureServices();
+                builder.Services.ConfigureRedis(builder.Configuration);
+                builder.Services.Configure<RouteOptions>(options
+                    => options.LowercaseUrls = true);
 
                 builder.Services.AddControllers();
                 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,15 +32,17 @@ namespace Basket.API
                 if (app.Environment.IsDevelopment())
                 {
                     app.UseSwagger();
-                    app.UseSwaggerUI();
+                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                        $"{builder.Environment.ApplicationName} v1"));
                 }
 
-                app.UseHttpsRedirection();
+
+                //app.UseHttpsRedirection();
 
                 app.UseAuthorization();
 
 
-                app.MapControllers();
+                app.MapDefaultControllerRoute();
 
                 app.Run();
             }
