@@ -3,14 +3,9 @@ using MediatR;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.Common.Models;
 using Shared.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Serilog;
 
-namespace Ordering.Application.Common.Features.V1.Orders
+namespace Ordering.Application.Features.V1.Orders
 {
     public class GetOrdersQueryHandler : IRequestHandler<GetOrdersQuery, ApiResult<List<OrderDto>>>
     {

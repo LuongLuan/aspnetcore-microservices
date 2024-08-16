@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Contracts.Domains.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using Ordering.Domain.Entities;
 
 namespace Ordering.Infrastructure.Persistence;
@@ -51,5 +53,17 @@ public class OrderContext : DbContext
         }
 
         return base.SaveChangesAsync(cancellationToken);
+    }
+    public class CustomerContextFactory : IDesignTimeDbContextFactory<OrderContext>
+    {
+        public OrderContext CreateDbContext(string[] args)
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
+            var optionsBuilder = new DbContextOptionsBuilder<OrderContext>();
+            var connectionString = configuration.GetConnectionString("DefaultConnectionString");
+            optionsBuilder.UseSqlServer(connectionString);
+
+            return new OrderContext(optionsBuilder.Options);
+        }
     }
 }

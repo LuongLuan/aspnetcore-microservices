@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Common
 {
-    public class RepositoryQueryBaseAsync<T, K, TContext> : IRepositoryQueryBaseAsync<T, K, TContext>
+    public class RepositoryQueryBaseAsync<T, K, TContext> : IRepositoryQueryBase<T, K, TContext>
     where T : EntityBase<K>
     where TContext : DbContext
     {

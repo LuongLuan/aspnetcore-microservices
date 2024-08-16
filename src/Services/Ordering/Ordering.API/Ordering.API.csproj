@@ -1,17 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d7f09dc5-5e3f-47f4-804d-c447260aed73</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..\..</DockerfileContext>
   </PropertyGroup>
 
+  <ItemGroup>
+	  <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
+	  <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10" />
+	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Common.Logging\Common.Logging.csproj" />
+    <ProjectReference Include="..\Ordering.Infrastructure\Ordering.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

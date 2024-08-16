@@ -2,7 +2,7 @@
 using MediatR;
 using Shared.SeedWork;
 
-namespace Ordering.Application.Common.Features.V1.Orders;
+namespace Ordering.Application.Features.V1.Orders;
 
 public class GetOrdersQuery : IRequest<ApiResult<List<OrderDto>>>
 {
