@@ -1,8 +1,10 @@
 using Common.Logging;
 using Ordering.Application;
+using Ordering.Application.Common.Interfaces;
 using Ordering.Infrastructure;
 using Ordering.Infrastructure.Extendsions;
 using Ordering.Infrastructure.Persistence;
+using Ordering.Infrastructure.Repositories;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -20,6 +22,7 @@ try
     // Add services to the container.
     builder.Host.AddAppConfigurations();
     //builder.Services.AddConfigurationSettings(builder.Configuration);
+    builder.Services.AddScoped<IOrderRepository, OrderRepository>();
     builder.Services.AddApplicationServices();
     builder.Services.AddInfrastructureServices(builder.Configuration);
 

@@ -31,4 +31,5 @@ public class Order : EntityAuditBase<long>
 
     public EOrderStatus Status { get; set; }
 
+
 }

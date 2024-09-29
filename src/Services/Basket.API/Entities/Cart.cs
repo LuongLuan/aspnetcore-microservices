@@ -9,13 +9,7 @@
         {
             this.UserName = username;
         }
-        public decimal TotalPrice
-        {
-            set
-            {
-                Items.Sum(item => item.ItemPrice * item.Quantity);
-            }
-        }
+        public decimal TotalPrice => Items.Sum(item => item.ItemPrice * item.Quantity);
     }
 }
 
