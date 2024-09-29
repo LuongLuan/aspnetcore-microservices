@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Information($"Start {builder.Environment.ApplicationName} up");
 
 try
-{
+  {
     builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Host.UseSerilog(Serilogger.Configure);
     builder.Host.AddAppConfigurations();
