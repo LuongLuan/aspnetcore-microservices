@@ -41,7 +41,7 @@ namespace Basket.API.Extensions
                 options.Configuration = settings.ConnectionString;
             });
         }
-        public static void ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureMassTransit(this IServiceCollection services)
         {
             var settings = services.GetOptions<EventBusSettings>("EventBusSettings");
             if (settings == null || string.IsNullOrEmpty(settings.HostAddress) ||

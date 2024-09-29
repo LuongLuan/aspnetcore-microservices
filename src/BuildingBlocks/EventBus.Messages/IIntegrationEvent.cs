@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventBus.Messages
 {
-    public class IIntegrationEvent
+    public interface IIntegrationEvent
     {
         Guid Id { get; }
         DateTime CreationDate { get; }

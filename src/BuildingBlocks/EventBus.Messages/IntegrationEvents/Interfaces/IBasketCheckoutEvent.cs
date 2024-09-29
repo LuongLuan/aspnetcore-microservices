@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventBus.Messages.IntegrationEvents.Interfaces;
 
-    public interface IBasketCheckoutEvent
+    public interface IBasketCheckoutEvent : IIntegrationEvent
 {
     string UserName { get; set; }
     decimal TotalPrice { get; set; }

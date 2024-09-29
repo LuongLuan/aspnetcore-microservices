@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Basket.API.Entities;
+using EventBus.Messages.IntegrationEvents.Events;
 using EventBus.Messages.IntegrationEvents.Interfaces;
 
 namespace Basket.API
@@ -8,7 +9,7 @@ namespace Basket.API
     {
         public MappingProfile()
         {
-            CreateMap<BasketCheckout, IBasketCheckoutEvent>();
+            CreateMap<BasketCheckout, BasketCheckoutEvent>();
         }
     }
 }
