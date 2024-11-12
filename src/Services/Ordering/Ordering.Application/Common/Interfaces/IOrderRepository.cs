@@ -11,5 +11,8 @@ namespace Ordering.Application.Common.Interfaces
     public interface IOrderRepository : IRepositoryQueryBase<Order, long>
     {
         Task<IEnumerable<Order>> GetOrdersByUserName(string userName);
+        Task<int> CreateOrder(Order order);
+        Task<Order> UpdateOrderAsync(Order order);
+        Task<int> DeleteOrder(Order order);
     }
 }

@@ -6,7 +6,7 @@ using Ordering.Domain.Enums;
 
 namespace Ordering.Application.Common.Models
 {
-    public class OrderDto : IMapFrom<Order>
+    public class OrderDto
     {
         public long Id { get; set; }
         public string UserName { get; set; }
@@ -22,11 +22,11 @@ namespace Ordering.Application.Common.Models
 
         //public EOrderStatus Status { get; set; }
 
-        public void Mapping (Profile profile)
-        {
-            profile.CreateMap<OrderDto,Order>()
-                .ForMember(dest => dest.Status, opts => opts.Ignore())
-                .IgnoreAllNonExisting().ReverseMap();
-        }
+        //public void Mapping (Profile profile)
+        //{
+        //    profile.CreateMap<OrderDto,Order>()
+        //        .ForMember(dest => dest.Status, opts => opts.Ignore())
+        //        .IgnoreAllNonExisting().ReverseMap();
+        //}
     }
 }

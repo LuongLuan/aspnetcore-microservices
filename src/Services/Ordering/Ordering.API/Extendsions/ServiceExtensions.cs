@@ -1,8 +1,9 @@
 ﻿using Infrastructure.Configurations;
 using Infrastructure.Extendsions;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using MassTransit;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Ordering.API.Application.IntegrationEvents.EventsHanler;
 using Shared.Configurations;
 namespace Ordering.Infrastructure.Extendsions
 {
@@ -29,6 +30,29 @@ namespace Ordering.Infrastructure.Extendsions
                 .AddSqlServer(databaseSettings.ConnectionString,
                     name: "SqlServer Health",
                     failureStatus: HealthStatus.Degraded);
+        }
+        public static void ConfigureMassTransit(this IServiceCollection services)
+        {
+            var settings = services.GetOptions<EventBusSettings>("EventBusSettings");
+            if (settings == null || string.IsNullOrEmpty(settings.HostAddress))
+                throw new ArgumentNullException("EventBusSetting is not configured");
+
+            var mqConnection = new Uri(settings.HostAddress);
+            services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
+            services.AddMassTransit(config =>
+            {
+                config.AddConsumersFromNamespaceContaining<BasketCheckoutEventHandler>();
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(mqConnection);
+                    // cfg.ReceiveEndpoint("basket-checkout-queue", c =>
+                    // {
+                    //     c.ConfigureConsumer<BasketCheckoutEventHandler>(ctx);
+                    // });
+
+                    cfg.ConfigureEndpoints(ctx);
+                });
+            });
         }
     }
     
