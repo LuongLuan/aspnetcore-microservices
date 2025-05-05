@@ -25,6 +25,7 @@ try
     builder.Services.AddScoped<IOrderRepository, OrderRepository>();
     builder.Services.AddApplicationServices();
     builder.Services.AddInfrastructureServices(builder.Configuration);
+    builder.Services.ConfigureMassTransit();
 
     // Add services to the container.
     builder.Services.AddControllers();

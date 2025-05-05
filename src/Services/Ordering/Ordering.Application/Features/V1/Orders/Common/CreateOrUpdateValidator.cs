@@ -26,8 +26,8 @@ namespace Ordering.Application.Features.V1.Orders
                 .EmailAddress().WithMessage("{EmailAddress} is invalid format.")
                 .NotEmpty().WithMessage("{EmailAddress} is required.");
 
-            RuleFor(p => p.ShippingAddress)
-                .NotEmpty().WithMessage("{ShippingAddress} is required.");
+            //RuleFor(p => p.ShippingAddress)
+            //    .NotEmpty().WithMessage("{ShippingAddress} is required.");
 
             RuleFor(p => p.TotalPrice)
                 .NotEmpty().WithMessage("{TotalPrice} is required.")
